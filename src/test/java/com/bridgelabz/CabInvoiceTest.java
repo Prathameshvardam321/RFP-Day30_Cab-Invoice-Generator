@@ -24,4 +24,13 @@ public class CabInvoiceTest {
         double totalFare = cabinvoice.getTotalFare(rides);
         Assertions.assertEquals(273,totalFare);
     }
+    @Test
+    public void givenMultipleRidesShould_ReturnInvoice(){
+        CabInvoice cabinvoice = new CabInvoice();
+        Invoice invoice = new Invoice();
+        Ride[] rides ={new Ride(12.0,3.0),new Ride(14.0,5.0),new Ride(0.1,3.0)};
+        Invoice actualInvoice = cabinvoice.getInvoiceOfRides(rides);
+        Invoice expectedInvoice = new Invoice(3,273,91);
+        Assertions.assertEquals(expectedInvoice,actualInvoice);
+    }
 }
