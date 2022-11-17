@@ -17,5 +17,12 @@ public class CabInvoiceTest {
         double totalFare = cabinvoice.getTotalFare(0.2,1);
         Assertions.assertEquals(5,totalFare);
     }
+    @Test
+    public void givenMultipleRidesShould_ReturnAggregateFare(){
+        CabInvoice cabinvoice = new CabInvoice();
+        Ride[] rides ={new Ride(12.0,3.0),new Ride(14.0,5.0),new Ride(0.1,3.0)};
+        double totalFare = cabinvoice.getTotalFare(rides);
+        Assertions.assertEquals(273,totalFare);
+    }
 
 }
