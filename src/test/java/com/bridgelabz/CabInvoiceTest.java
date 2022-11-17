@@ -24,5 +24,4 @@ public class CabInvoiceTest {
         double totalFare = cabinvoice.getTotalFare(rides);
         Assertions.assertEquals(273,totalFare);
     }
-
 }
