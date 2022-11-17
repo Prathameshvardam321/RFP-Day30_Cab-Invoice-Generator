@@ -34,17 +34,33 @@ public class CabInvoiceTest {
     }
     @Test
     public void givenUserId_OfMultipleRidesShould_ReturnInvoice(){
-        CabInvoice cabinvoice = new CabInvoice();
         Ride[] rides1 = {new Ride(12.0,3.0),new Ride(14.0,5.0),new Ride(0.1,3.0)};
         Ride[] rides2 = {new Ride(12.5,4.8),new Ride(34.4,9.7)};
         RideRepository repository = new RideRepository();
         repository.addRides("user101",rides1);
         repository.addRides("user102",rides2);
-        Invoice actualInvoice1 = repository.getInvoiceFromUserId("user102");
-        Invoice actualInvoice2 = repository.getInvoiceFromUserId("user101");
-        Invoice expectedInvoice1 = new Invoice(2,483.5,241.75);
-        Invoice expectedInvoice2 = new Invoice(3,273,91);
+        Invoice actualInvoice1 = repository.getInvoiceFromUserId("user101");
+        Invoice actualInvoice2 = repository.getInvoiceFromUserId("user102");
+        Invoice expectedInvoice1 = new Invoice(3,273,91);
+        Invoice expectedInvoice2 = new Invoice(2,483.5,241.75);
         Assertions.assertEquals(expectedInvoice1,actualInvoice1);
         Assertions.assertEquals(expectedInvoice2,actualInvoice2);
     }
+    @Test
+    public void givenMultipleRidesShould_ReturnInvoice_ForPremiumRides(){
+        Ride[] rides = {new Ride(12.34,6),new Ride(10,4)};
+        CabInvoice cabInvoice = new CabInvoice();
+        Invoice actualInvoice = cabInvoice.getInvoiceOfPremiumRides(rides);
+        Invoice expectedInvoice = new Invoice(2,355.1,177.55);
+        Assertions.assertEquals(expectedInvoice,actualInvoice);
+    }
+    @Test
+    public void givenMultipleRidesShould_ReturnInvoice_ForNormalAndPremiumRides(){
+        Ride[] rides ={new Ride(12,3,"Normal"),new Ride(13.4,4,"Premium"),new Ride(17,8,"Premium")};
+        CabInvoice cabInvoice = new CabInvoice();
+        Invoice actualInvoice = cabInvoice.getInvoiceOfRidesOfBothRides(rides);
+        Invoice expectedInvoice = new Invoice(3,603,201);
+        Assertions.assertEquals(expectedInvoice,actualInvoice);
+    }
+
 }

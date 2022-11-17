@@ -11,14 +11,9 @@ public class RideRepository {
            rideHashMap.put(userId,rides);
        }
    }
-   public Ride[] getRideFromUserId(String userId){
-       Ride[] rides = rideHashMap.get(userId);
-       return rides;
-   }
    public Invoice getInvoiceFromUserId(String userId){
        Ride[] rides = rideHashMap.get(userId);
        CabInvoice invoice = new CabInvoice();
        return invoice.getInvoiceOfRides(rides);
    }
-
 }
