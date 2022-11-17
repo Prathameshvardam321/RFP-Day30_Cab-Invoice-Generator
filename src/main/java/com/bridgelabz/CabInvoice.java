@@ -28,4 +28,6 @@ public class CabInvoice {
         double averageRideFare = totalFare/numberOfRides;
         return new Invoice(numberOfRides,totalFare,averageRideFare);
     }
+
+
 }
