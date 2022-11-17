@@ -46,6 +46,5 @@ public class CabInvoiceTest {
         Invoice expectedInvoice2 = new Invoice(3,273,91);
         Assertions.assertEquals(expectedInvoice1,actualInvoice1);
         Assertions.assertEquals(expectedInvoice2,actualInvoice2);
-
     }
 }
